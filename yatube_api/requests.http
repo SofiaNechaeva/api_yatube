@@ -1,0 +1,133 @@
+GET http://127.0.0.1:8000/api/v1/posts
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+###
+
+POST http://127.0.0.1:8000/api/v1/posts/
+Content-Type: application/json
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+{
+    "text": "Вечером собрались в редакции «Русской мысли», чтобы поговорить о народном театре. Проект Шехтеля всем нравится.",
+    "group": 1
+}
+###
+
+POST http://127.0.0.1:8000/api/v1/api-token-auth/
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "email": "admin@mail.com",
+    "password": "12345"
+}
+###
+
+GET http://127.0.0.1:8000/api/v1/posts/1
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+###
+
+PATCH http://127.0.0.1:8000/api/v1/posts/1/
+Content-Type: application/json
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+{
+    "text": "Rуку!!"
+}
+
+###
+
+
+PUT http://127.0.0.1:8000/api/v1/posts/1/
+Content-Type: application/json
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+{
+    "id": 1, 
+    "text": "Куку!!!",
+    "author": 1
+}
+
+###
+
+GET http://127.0.0.1:8000/api/v1/posts
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+###
+GET http://127.0.0.1:8000/api/v1/posts
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+
+###
+python manage.py shell
+from posts.models import Group
+group = Group.objects.create(
+    title='Музыка',
+    slug='music',
+    description='Группа для обсуждения музыкальных тем'
+)
+group.save()
+Group.objects.all()
+###
+
+GET http://127.0.0.1:8000/api/v1/groups
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+###
+
+GET http://127.0.0.1:8000/api/v1/posts/1/comments
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+
+
+###
+POST http://127.0.0.1:8000/api/v1/posts/1/comments/
+Content-Type: application/json
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+{
+    "text": "тест тест"
+}
+
+###
+
+GET http://127.0.0.1:8000/api/v1/posts/1/comments/1
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+###
+PATCH http://127.0.0.1:8000/api/v1/posts/1/comments/1/
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+Content-Type: application/json
+
+{
+  "text": "Обновлённый текст комментария"
+}
+
+###
+
+PUT http://127.0.0.1:8000/api/v1/posts/1/comments/1/
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+Content-Type: application/json
+
+{
+  "author": 3,
+  "post": 1,
+  "text": "Полная замена комментария",
+  "created": "2025-09-03T17:00:00Z"
+}
+
+
+###
+POST http://127.0.0.1:8000/api/v1/posts/
+Content-Type: application/json
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
+
+{
+    "text": "Вечером собрались в редакции «Русской мысли», чтобы поговорить о народном театре. Проект Шехтеля всем нравится.",
+    "group": 1
+}
+
+###
+DELETE http://127.0.0.1:8000/api/v1/posts/8
+Authorization: Token 7a6520c298001730aa2130fd2a23d3700d939f05
